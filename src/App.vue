@@ -2,14 +2,9 @@
 </script>
 
 <template>
-  <div class="title flex">
-    <div class="mr-10 font-size-18">hello carbon</div>
-    <div>welcome</div>
-  </div>
+  <RouterView />
 </template>
 
 <style scoped lang="less">
-.title {
-  color: red;
-}
+
 </style>
