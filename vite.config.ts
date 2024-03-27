@@ -5,4 +5,16 @@ import UnoCSS from 'unocss/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), UnoCSS()],
+  server: {
+    proxy: {
+      '/api/ghg-emission': {
+        target: 'https://saas-dev.ecdigit.dev/',
+        changeOrigin: true,
+      },
+      '/ecdigit/api': {
+        target: 'https://saas-dev.ecdigit.dev/',
+        changeOrigin: true,
+      }
+    }
+  }
 });

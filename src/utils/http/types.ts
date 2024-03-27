@@ -9,6 +9,8 @@ export interface ECAxiosRequestConfig extends AxiosRequestConfig {
 export interface RequestOptions {
   //忽略重复请求
   ignoreCancelToken?: boolean;
+  // api前缀
+  apiPrefix?: 'GHG' | 'EC'
 }
 
 export interface Result<T = any> {

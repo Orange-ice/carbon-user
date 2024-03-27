@@ -1,7 +1,7 @@
 import type { AxiosTransform } from './axiosTransform.ts';
 import { ECAxiosRequestConfig } from './types.ts';
 import { ECAxios } from './Axios.ts';
-import { getEnvConfig } from '../env.ts';
+import { ApiPrefix } from '../../enums/httpEnum.ts';
 
 
 /**
@@ -14,7 +14,7 @@ const transform: AxiosTransform = {
    */
   transformRequestData: (res, options) => {
     console.log('transformRequestData', res, options);
-    return res;
+    return res.data;
   },
 
 
@@ -22,7 +22,9 @@ const transform: AxiosTransform = {
    * @description: 请求前config配置
    * */
   beforeRequestHook: (config, options) => {
-    console.log('beforeRequestHook', config, options);
+    // 处理api公共前缀 （默认GHG）
+    config.baseURL = ApiPrefix[options.apiPrefix || 'GHG']
+
     return config;
   },
 
@@ -38,7 +40,7 @@ const transform: AxiosTransform = {
 function createAxios(opt?: Partial<ECAxiosRequestConfig>) {
   return new ECAxios({
     timeout: 30 * 1000,
-    baseURL: getEnvConfig().VITE_APP_BASE_API,
+    baseURL: '',
     transform,
     ...opt
   });

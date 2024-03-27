@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { store } from '../index.ts';
+import { login, LoginParams } from '../../api/user.ts';
 
 interface UserState {
   token: string;
@@ -19,8 +20,9 @@ export const useUserStore = defineStore({
     setToken(token: string) {
       this.token = token;
     },
-    async login() {
-      this.setToken('Bearer token');
+    async login(params: LoginParams) {
+      const res = await login(params)
+      this.setToken(res.accessToken);
     }
   },
   persist: {
