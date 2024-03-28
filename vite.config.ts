@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [vue(), UnoCSS()],
   server: {
     proxy: {
-      '/api/ghg-emission': {
+      '/api': {
         target: 'https://saas-dev.ecdigit.dev/',
         changeOrigin: true,
       },

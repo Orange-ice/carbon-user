@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { store } from '../index.ts';
-import { login, LoginParams } from '../../api/user.ts';
+import { getUserInfo, login, LoginParams } from '../../api/user.ts';
 
 interface UserState {
   token: string;
@@ -22,7 +22,12 @@ export const useUserStore = defineStore({
     },
     async login(params: LoginParams) {
       const res = await login(params)
-      this.setToken(res.accessToken);
+      console.log(res);
+      this.setToken(res.data.accesstoken);
+    },
+    async getInfo() {
+      const res = await getUserInfo();
+      console.log(res);
     }
   },
   persist: {

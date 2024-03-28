@@ -11,8 +11,9 @@ const loginParams = reactive({
 </script>
 
 <template>
-  <div>
-    <p class="font-size-20 font-bold">{{ userStore.getToken || 'Empty' }}</p>
+  <div class="flex flex-col">
+    <p class="font-size-12 font-bold">{{ userStore.getToken || 'Empty' }}</p>
     <button @click="userStore.login(loginParams)">Login</button>
+    <button @click="userStore.getInfo()">GET Info</button>
   </div>
 </template>

@@ -1,4 +1,5 @@
 import { http } from '../utils/http';
+import { Result } from '../utils/http/types.ts';
 
 export interface LoginParams {
   username: string;
@@ -6,7 +7,7 @@ export interface LoginParams {
 }
 
 export function login(data: LoginParams) {
-  return http.request({
+  return http.request<Result<{ accesstoken: string }>>({
     url: '/sso/oauth/login',
     method: 'post',
     data: {
@@ -14,4 +15,13 @@ export function login(data: LoginParams) {
       sysTemType: 'CARBON_DATA'
     }
   }, { apiPrefix: 'EC' });
+}
+
+// 获取用户信息
+export function getUserInfo() {
+  return http.request({
+    url: '/roles/getUserInfo',
+    method: 'get',
+    params: { projectType: 'ghg' }
+  }, { apiPrefix: 'PERMISSION' });
 }

@@ -1,7 +1,9 @@
 import type { AxiosTransform } from './axiosTransform.ts';
-import { ECAxiosRequestConfig } from './types.ts';
+import type { ECAxiosRequestConfig, Result } from './types.ts';
 import { ECAxios } from './Axios.ts';
-import { ApiPrefix } from '../../enums/httpEnum.ts';
+import { ApiPrefix, ResultEnum } from '../../enums/httpEnum.ts';
+import { useUser } from '../../store/modules/user.ts';
+import type { AxiosError } from 'axios';
 
 
 /**
@@ -14,7 +16,23 @@ const transform: AxiosTransform = {
    */
   transformRequestData: (res, options) => {
     console.log('transformRequestData', res, options);
-    return res.data;
+    const { data } = res;
+    if (!data) {
+      throw new Error('请求出错，请稍候重试');
+    }
+
+    const { code, total, data: resultData, message } = data;
+
+    // 请求成功
+    if (code === ResultEnum.SUCCESS) {
+      // 如果非分页接口，直接返回结果数据
+      return total === null ? resultData : data;
+    }
+
+    const errorMsg = message || '请求出错，请稍候重试';
+    // TODO message attention
+    console.log('message attention', errorMsg);
+    throw new Error(errorMsg);
   },
 
 
@@ -23,7 +41,14 @@ const transform: AxiosTransform = {
    * */
   beforeRequestHook: (config, options) => {
     // 处理api公共前缀 （默认GHG）
-    config.baseURL = ApiPrefix[options.apiPrefix || 'GHG']
+    config.baseURL = ApiPrefix[options.apiPrefix || 'GHG'];
+
+    const userStore = useUser();
+    const token = userStore.getToken;
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = token;
+    }
 
     return config;
   },
@@ -33,6 +58,9 @@ const transform: AxiosTransform = {
    * @description 响应错误处理
    * */
   responseInterceptorsCatch: (error) => {
+    const { response, message } = error as AxiosError<Result>;
+    // TODO message attention
+    console.log(response?.data?.message || message);
     return Promise.reject(error);
   }
 };

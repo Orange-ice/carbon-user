@@ -10,12 +10,17 @@ export interface RequestOptions {
   //忽略重复请求
   ignoreCancelToken?: boolean;
   // api前缀
-  apiPrefix?: 'GHG' | 'EC'
+  apiPrefix?: 'GHG' | 'EC' | 'PERMISSION';
 }
 
 export interface Result<T = any> {
-  code: number;
-  type: 'success' | 'error' | 'warning';
+  code: string;
   message: string;
-  result: T;
+  data: T;
+  success: boolean;
+
+  page: number | null;
+  size: number | null;
+  total: number | null;
+  totalPageNum: number | null;
 }
