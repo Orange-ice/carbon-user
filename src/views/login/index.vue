@@ -8,6 +8,10 @@ const loginParams = reactive({
   username: 'nene',
   password: '123456'
 })
+
+const testMessage = () => {
+  window.$message.success('Hello Arco');
+};
 </script>
 
 <template>
@@ -15,5 +19,8 @@ const loginParams = reactive({
     <p class="font-size-12 font-bold">{{ userStore.getToken || 'Empty' }}</p>
     <button @click="userStore.login(loginParams)">Login</button>
     <button @click="userStore.getInfo()">GET Info</button>
+  </div>
+  <div class="m10">
+    <a-button type="primary" @click="testMessage">ARCO BUTTON</a-button>
   </div>
 </template>

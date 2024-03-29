@@ -15,6 +15,7 @@ const transform: AxiosTransform = {
    * @description: 处理请求数据
    */
   transformRequestData: (res, options) => {
+    const { $message } = window;
     console.log('transformRequestData', res, options);
     const { data } = res;
     if (!data) {
@@ -30,8 +31,7 @@ const transform: AxiosTransform = {
     }
 
     const errorMsg = message || '请求出错，请稍候重试';
-    // TODO message attention
-    console.log('message attention', errorMsg);
+    $message.error(errorMsg);
     throw new Error(errorMsg);
   },
 
@@ -58,9 +58,9 @@ const transform: AxiosTransform = {
    * @description 响应错误处理
    * */
   responseInterceptorsCatch: (error) => {
+    const { $message } = window;
     const { response, message } = error as AxiosError<Result>;
-    // TODO message attention
-    console.log(response?.data?.message || message);
+    $message.error(response?.data?.message || message);
     return Promise.reject(error);
   }
 };
