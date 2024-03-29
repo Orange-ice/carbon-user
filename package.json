@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "2.55.0",
+    "@arco-themes/vue-onebrand": "0.0.28",
     "axios": "1.6.8",
     "less": "4.2.0",
     "pinia": "2.1.7",

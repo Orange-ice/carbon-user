@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     // 按需加载与组件库主题（Arco 插件）【插件会自动加载组件样式。】
     vitePluginForArco({
-      style: 'css'
+      theme: '@arco-themes/vue-onebrand'
     })
   ],
   server: {

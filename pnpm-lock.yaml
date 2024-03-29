@@ -8,6 +8,9 @@ dependencies:
   '@arco-design/web-vue':
     specifier: 2.55.0
     version: 2.55.0(vue@3.4.21)
+  '@arco-themes/vue-onebrand':
+    specifier: 0.0.28
+    version: 0.0.28(@arco-design/web-vue@2.55.0)
   axios:
     specifier: 1.6.8
     version: 1.6.8
@@ -114,6 +117,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@arco-themes/vue-onebrand@0.0.28(@arco-design/web-vue@2.55.0):
+    resolution: {integrity: sha512-sQhXPnATmIZb8669vMW+uNdpI2GJsUYQYdaGCRN/w5PUzhHSOmn7qBoSOeo0AwpBEZlgrSFMQzKZB5XpcDmkTw==}
+    peerDependencies:
+      '@arco-design/web-vue': ^2.54.3
+    dependencies:
+      '@arco-design/web-vue': 2.55.0(vue@3.4.21)
+    dev: false
 
   /@babel/code-frame@7.24.2:
     resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
