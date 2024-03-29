@@ -13,6 +13,7 @@
     "@arco-themes/vue-onebrand": "0.0.28",
     "axios": "1.6.8",
     "less": "4.2.0",
+    "nprogress": "0.2.0",
     "pinia": "2.1.7",
     "the-new-css-reset": "1.11.2",
     "vue": "3.4.21",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@arco-plugins/vite-vue": "1.4.5",
+    "@types/nprogress": "0.2.3",
     "@unocss/preset-rem-to-px": "0.58.6",
     "@vitejs/plugin-vue": "5.0.4",
     "pinia-plugin-persistedstate": "3.2.1",

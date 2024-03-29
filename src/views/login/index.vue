@@ -22,5 +22,7 @@ const testMessage = () => {
   </div>
   <div class="m10">
     <a-button type="primary" @click="testMessage">ARCO BUTTON</a-button>
+
+    <a-button @click="$router.push({name: 'carbon_index'})">Carbon</a-button>
   </div>
 </template>
